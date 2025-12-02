@@ -35,9 +35,7 @@ class UserInfo extends StatelessWidget {
             ),
           ],
         ),
-
         Spacer(),
-
         Container(
           decoration: BoxDecoration(
             color: const Color.fromARGB(60, 255, 252, 252),
