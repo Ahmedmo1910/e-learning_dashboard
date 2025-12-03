@@ -4,14 +4,19 @@ import 'package:teachers_dashboard/core/utils/app_colors.dart';
 class QuickAccessCard extends StatelessWidget {
   final IconData icon;
   final String label;
+  final void Function()? onTap;
 
-  const QuickAccessCard({Key? key, required this.icon, required this.label})
-    : super(key: key);
+  const QuickAccessCard({
+    super.key,
+    required this.icon,
+    required this.label,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: Container(
         decoration: BoxDecoration(
           boxShadow: [
