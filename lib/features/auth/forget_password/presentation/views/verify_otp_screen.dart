@@ -20,7 +20,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthProvider>();
 
     return Scaffold(
       appBar: AppBar(title: const Text("Verify OTP")),
@@ -45,12 +45,12 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               const SizedBox(height: 20),
 
               ElevatedButton(
-                onPressed: _auth.isLoading
+                onPressed: auth.isLoading
                     ? null
                     : () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          final resetToken  = await _auth.verifyOtp(
+                          final resetToken  = await auth.verifyOtp(
                             email: widget.email,
                             otp: otp,
                           );
@@ -74,7 +74,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                         } else {
                           SnackBarHelper.showSnackBar(
                             context,
-                            _auth.errorMsg!,
+                            auth.errorMsg!,
                             Colors.red,
                           );
                           }
@@ -82,7 +82,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                           return;
                         }
                       },
-                child: _auth.isLoading
+                child: auth.isLoading
                     ? CircularProgressIndicator(color: Colors.white)
                     : const Text("Verify"),
               ),

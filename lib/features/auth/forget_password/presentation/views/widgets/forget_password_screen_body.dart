@@ -19,7 +19,7 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
   String email = "";
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthProvider>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
@@ -54,14 +54,14 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             MainButton(
               text: 'Continue',
               hasCircularBorder: true,
-              onTap: _auth.isLoading
+              onTap: auth.isLoading
                   ? null
                   : () async {
                       if (!_formKey.currentState!.validate()) {
                         return;
                       }
                       _formKey.currentState!.save();
-                      final success = await _auth.sendResetOtp(email: email);
+                      final success = await auth.sendResetOtp(email: email);
                       if (!mounted) return;
                       if (success) {
                         SnackBarHelper.showSnackBar(
@@ -79,12 +79,12 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
                       } else {
                         SnackBarHelper.showSnackBar(
                           context,
-                          _auth.errorMsg!,
+                          auth.errorMsg!,
                           Colors.red,
                         );
                       }
                     },
-              child: _auth.isLoading
+              child: auth.isLoading
                   ? CircularProgressIndicator(color: Colors.white)
                   : const Text("Send OTP"),
             ),

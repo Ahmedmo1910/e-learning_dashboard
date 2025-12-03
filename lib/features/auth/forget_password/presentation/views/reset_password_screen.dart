@@ -25,7 +25,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthProvider>();
 
     return Scaffold(
       appBar: AppBar(title: const Text("Reset Password")),
@@ -51,14 +51,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               const SizedBox(height: 20),
 
               ElevatedButton(
-                onPressed: _auth.isLoading
+                onPressed: auth.isLoading
                     ? null
                     : () async {
                         if (!_formKey.currentState!.validate()) return;
 
                         _formKey.currentState!.save();
 
-                        final success = await _auth.resetPassword(
+                        final success = await auth.resetPassword(
                           email: widget.email,
                           resetToken: widget.resetToken,
                           newPassword: newPassword,
@@ -81,12 +81,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         } else {
                           SnackBarHelper.showSnackBar(
                             context,
-                            _auth.errorMsg!,
+                            auth.errorMsg!,
                             Colors.red,
                           );
                         }
                       },
-                child: _auth.isLoading
+                child: auth.isLoading
                     ? CircularProgressIndicator(color: Colors.white)
                     : const Text("Reset Password"),
               ),
