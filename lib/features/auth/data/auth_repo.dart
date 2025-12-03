@@ -47,10 +47,10 @@ class AuthRepo {
 
   Future<dynamic> sendResetOtp({required String email}) async {
     try {
-      final responce = await _dioClient.dio.post(
+      final response = await _dioClient.dio.post(
         '/api/Auth/password/forgot?email=$email',
       );
-      return responce.data;
+      return response.data;
     } on DioException catch (e) {
       return {
         "success": false,
