@@ -11,7 +11,10 @@ class SigninScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SigninCubit(AuthRepo()),
-      child: Scaffold(body: SafeArea(child: SigninScreenBodyBlocConsumer())),
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(body: SafeArea(child: SigninScreenBodyBlocConsumer())),
+      ),
     );
   }
 }
