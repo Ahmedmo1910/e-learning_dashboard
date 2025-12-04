@@ -1,25 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:teachers_dashboard/core/widgets/auth_header_widget.dart';
 import 'package:teachers_dashboard/core/widgets/custom_button.dart';
-import 'package:teachers_dashboard/core/widgets/snack_bar_helper.dart';
-import 'package:teachers_dashboard/features/auth/data/auth_provider.dart';
-import 'package:teachers_dashboard/features/auth/forget_password/presentation/views/verify_otp_screen.dart';
+import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
+import 'package:teachers_dashboard/features/auth/forget_password/presentation/cubit/reset_password_cubit.dart';
 
-class ForgetPasswordScreenBody extends StatefulWidget {
-  const ForgetPasswordScreenBody({super.key});
+class ForgetPasswordScreenBody extends StatelessWidget {
+  ForgetPasswordScreenBody({super.key});
 
-  @override
-  State<ForgetPasswordScreenBody> createState() =>
-      _ForgetPasswordScreenBodyState();
-}
-
-class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
   final _formKey = GlobalKey<FormState>();
-  String email = "";
+  late String email;
+
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final cubit = context.read<ResetPasswordCubit>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
@@ -36,16 +31,13 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             SizedBox(height: 30),
             Form(
               key: _formKey,
-              child: TextFormField(
-                decoration: const InputDecoration(labelText: "Email"),
-                validator: (val) {
-                  if (val == null || val.isEmpty) return "Email is required";
-
-                  if (!val.contains("@")) return "Enter valid email";
-
-                  return null;
-                },
+              child: CustomTextFormField(
+                hintText: "Email",
                 onSaved: (val) => email = val!.trim(),
+                prefixIcon: SvgPicture.asset(
+                  'assets/icons/email.svg',
+                  fit: BoxFit.scaleDown,
+                ),
               ),
             ),
             SizedBox(height: 40),
@@ -54,39 +46,12 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             MainButton(
               text: 'Continue',
               hasCircularBorder: true,
-              onTap: _auth.isLoading
-                  ? null
-                  : () async {
-                      if (!_formKey.currentState!.validate()) {
-                        return;
-                      }
-                      _formKey.currentState!.save();
-                      final success = await _auth.sendResetOtp(email: email);
-                      if (!mounted) return;
-                      if (success) {
-                        SnackBarHelper.showSnackBar(
-                          context,
-                          "OTP sent! To $email",
-                          Colors.green,
-                        );
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => VerifyOtpScreen(email: email),
-                          ),
-                        );
-                      } else {
-                        SnackBarHelper.showSnackBar(
-                          context,
-                          _auth.errorMsg!,
-                          Colors.red,
-                        );
-                      }
-                    },
-              child: _auth.isLoading
-                  ? CircularProgressIndicator(color: Colors.white)
-                  : const Text("Send OTP"),
+              onTap: () {
+                if (!_formKey.currentState!.validate()) return;
+                _formKey.currentState!.save();
+                cubit.setEmail(email);
+                cubit.sendResetOtp();
+              },
             ),
           ],
         ),
