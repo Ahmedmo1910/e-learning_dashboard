@@ -5,8 +5,7 @@ class QuickAccessCard extends StatelessWidget {
   final IconData icon;
   final String label;
 
-  const QuickAccessCard({Key? key, required this.icon, required this.label})
-    : super(key: key);
+  const QuickAccessCard({super.key, required this.icon, required this.label});
 
   @override
   Widget build(BuildContext context) {
