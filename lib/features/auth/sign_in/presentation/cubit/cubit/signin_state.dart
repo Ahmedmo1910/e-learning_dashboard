@@ -12,13 +12,3 @@ class SigninFailure extends SigninState {
   final String errorMsg;
   SigninFailure(this.errorMsg);
 }
-
-// Reset Password Flow States
-// class OtpSent extends SigninState {}
-
-// class OtpVerified extends SigninState {
-//   final String resetToken;
-//   OtpVerified(this.resetToken);
-// }
-
-// class PasswordResetSuccess extends SigninState {}
