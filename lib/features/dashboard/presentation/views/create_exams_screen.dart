@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
+import 'package:teachers_dashboard/core/widgets/custom_button.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/app_bar_create_exam.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/class_field.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/exam_title_field.dart';
@@ -60,7 +61,12 @@ class _CreateExamContentState extends State<CreateExamContent> {
         child: SafeArea(
           child: Column(
             children: [
-              appBarInCreateExam(),
+              appBarInCreateExam(
+                screenName: "Create New Exam",
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
 
               Divider(),
 
@@ -85,18 +91,38 @@ class _CreateExamContentState extends State<CreateExamContent> {
 
                     const SizedBox(height: 20),
 
+                    const Text(
+                      "Exam Title",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
                     ExamTitleField(),
 
                     const SizedBox(height: 20),
 
-                    const Text("Class"),
-
-                    const SizedBox(height: 6),
-
+                    const Text(
+                      "Class",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
                     class_field(),
 
                     const SizedBox(height: 20),
 
+                    const Text(
+                      "Data",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
                     GestureDetector(
                       onTap: _pickDate,
                       child: AbsorbPointer(
@@ -123,12 +149,36 @@ class _CreateExamContentState extends State<CreateExamContent> {
 
                     const SizedBox(height: 20),
 
+                    const Text(
+                      "Exam Link",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
                     Url_Exam_Field(durationController: _durationController),
 
                     const SizedBox(height: 20),
 
+                    const Text(
+                      "Instructions",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
                     Instructions_field(
                       instructionsController: _instructionsController,
+                    ),
+
+                    const SizedBox(height: 20),
+
+                    MainButton(
+                      text: 'Create Exam',
+                      hasCircularBorder: true,
+                      onTap: () {},
                     ),
                   ],
                 ),

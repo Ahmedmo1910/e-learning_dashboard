@@ -14,7 +14,6 @@ class Url_Exam_Field extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: _durationController,
-      keyboardType: TextInputType.number,
       decoration: const InputDecoration(
         labelText: 'Exam Link',
         hintText: 'https://examlink.com/',
