@@ -24,8 +24,6 @@ class DashboardScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 10),
-
             QuickAccessGrid(),
           ],
         ),
