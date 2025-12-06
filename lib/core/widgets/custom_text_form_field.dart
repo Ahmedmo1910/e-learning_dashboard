@@ -23,10 +23,13 @@ class CustomTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.prefixIcon,
   });
-
   @override
   Widget build(BuildContext context) {
+    final bool isInstructions = hintText == "Instructions";
+
     return TextFormField(
+      minLines: isInstructions ? 3 : 1,
+      maxLines: isInstructions ? 6: 1,
       controller: controller,
       validator: (input) {
         if (input == null || input.isEmpty) {
@@ -44,7 +47,7 @@ class CustomTextFormField extends StatelessWidget {
         AutofillHints.email,
         AutofillHints.password,
         AutofillHints.name,
-        AutofillHints.telephoneNumber
+        AutofillHints.telephoneNumber,
       ],
       cursorColor: AppColors.primaryColor,
       obscureText: obscureText,
@@ -73,10 +76,7 @@ class CustomTextFormField extends StatelessWidget {
   OutlineInputBorder buildBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: const BorderSide(
-        color: Color(0xFFDEDEDE),
-        width: 1,
-      ),
+      borderSide: const BorderSide(color: Color(0xFFDEDEDE), width: 1),
     );
   }
 }

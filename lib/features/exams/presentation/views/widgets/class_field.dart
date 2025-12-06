@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class class_field extends StatelessWidget {
-  const class_field({super.key});
+class ClassField extends StatelessWidget {
+  final String? selectedClass;
+  final ValueChanged<String?> onChanged;
+
+  const ClassField({
+    super.key,
+    required this.selectedClass,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 30),
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade400),
-        borderRadius: BorderRadius.circular(12),
+        color: const Color(0xFFF4F4F4),
+        border: Border.all(color: const Color(0xFFDEDEDE)),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton<String>(
+          isExpanded: true,
+          value: selectedClass,
           hint: const Text("Select a class..."),
           items: const [
             DropdownMenuItem(value: "A", child: Text("Class A")),
@@ -21,7 +31,7 @@ class class_field extends StatelessWidget {
             DropdownMenuItem(value: "C", child: Text("Class C")),
             DropdownMenuItem(value: "D", child: Text("Class D")),
           ],
-          onChanged: (value) {},
+          onChanged: onChanged,
         ),
       ),
     );
