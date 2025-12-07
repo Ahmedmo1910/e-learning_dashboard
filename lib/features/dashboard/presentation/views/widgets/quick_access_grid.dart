@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teachers_dashboard/features/exam/presentation/views/create_exams_screen.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/quick_access_card.dart';
 
 class QuickAccessGrid extends StatelessWidget {
@@ -7,7 +8,7 @@ class QuickAccessGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
 
       child: GridView.count(
         shrinkWrap: true,
@@ -18,19 +19,31 @@ class QuickAccessGrid extends StatelessWidget {
         childAspectRatio: 1.0,
         padding: EdgeInsets.zero,
 
-        children: const [
-          QuickAccessCard(
+        children: [
+          const QuickAccessCard(
             icon: Icons.upload_file_outlined,
             label: 'Upload Lessons',
           ),
           QuickAccessCard(
             icon: Icons.assignment_outlined,
             label: 'Create Exam',
+            onTap: () {
+              Navigator.pushNamed(context, CreateExamsScreen.routeName);
+            },
           ),
-          QuickAccessCard(icon: Icons.folder_outlined, label: 'Manage Files'),
-          QuickAccessCard(icon: Icons.people_outline, label: 'Student List'),
-          QuickAccessCard(icon: Icons.bar_chart_outlined, label: 'Grades'),
-          QuickAccessCard(
+          const QuickAccessCard(
+            icon: Icons.folder_outlined,
+            label: 'Manage Files',
+          ),
+          const QuickAccessCard(
+            icon: Icons.people_outline,
+            label: 'Student List',
+          ),
+          const QuickAccessCard(
+            icon: Icons.bar_chart_outlined,
+            label: 'Grades',
+          ),
+          const QuickAccessCard(
             icon: Icons.campaign_outlined,
             label: 'Announcements',
           ),
