@@ -5,7 +5,6 @@ class QuickAccessCard extends StatelessWidget {
   final IconData icon;
   final String label;
   final void Function()? onTap;
-
   const QuickAccessCard({
     super.key,
     required this.icon,
