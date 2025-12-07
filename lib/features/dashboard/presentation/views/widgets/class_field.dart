@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-class class_field extends StatelessWidget {
-  const class_field({super.key});
+class ClassField extends StatelessWidget {
+  const ClassField({super.key});
 
   @override
   Widget build(BuildContext context) {
