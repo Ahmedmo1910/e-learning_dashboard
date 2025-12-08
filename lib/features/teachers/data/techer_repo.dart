@@ -17,7 +17,7 @@ class TecherRepo {
     }
   }
 
-  Future<dynamic> getTeacherSubjectLessonsAttachmentsByCurrentTeache({
+  Future<dynamic> getTeacherSubjectLessonsAttachmentsByCurrentTeacher({
     required String teacherSubjectId,
   }) async {
     try {
