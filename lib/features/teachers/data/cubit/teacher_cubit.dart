@@ -35,7 +35,7 @@ class TeacherCubit extends Cubit<TeacherState> {
   }) async {
     emit(TeacherLoading());
     final responce = await _techerRepo
-        .getTeacherSubjectLessonsAttachmentsByCurrentTeache(
+        .getTeacherSubjectLessonsAttachmentsByCurrentTeacher(
           teacherSubjectId: teacherSubjectId,
         );
     if (responce is Map && responce['statusCode'] == 200) {
