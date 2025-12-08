@@ -5,12 +5,14 @@ import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
+  final String? labelText;
   final void Function(String?)? onSaved;
   final TextInputType? keyboardType;
   final Color? fillColor;
   final bool obscureText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
+  final int? maxLines;
 
   const CustomTextFormField({
     super.key,
@@ -22,11 +24,14 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.suffixIcon,
     this.prefixIcon,
+    this.labelText,
+    this.maxLines = 1,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       controller: controller,
       validator: (input) {
         if (input == null || input.isEmpty) {
@@ -44,14 +49,17 @@ class CustomTextFormField extends StatelessWidget {
         AutofillHints.email,
         AutofillHints.password,
         AutofillHints.name,
-        AutofillHints.telephoneNumber
+        AutofillHints.telephoneNumber,
       ],
       cursorColor: AppColors.primaryColor,
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppTextStyles.regular14.copyWith(
-          color: const Color(0xFF858383),
+        labelText: labelText,
+
+        hintStyle: AppTextStyles.regular14.copyWith(color: AppColors.greyColor),
+        labelStyle: AppTextStyles.regular14.copyWith(
+          color: AppColors.greyColor,
         ),
         filled: true,
         fillColor: fillColor,
@@ -73,10 +81,7 @@ class CustomTextFormField extends StatelessWidget {
   OutlineInputBorder buildBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: const BorderSide(
-        color: Color(0xFFDEDEDE),
-        width: 1,
-      ),
+      borderSide: const BorderSide(color: Color(0xFFDEDEDE), width: 1),
     );
   }
 }

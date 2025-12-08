@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teachers_dashboard/features/dashboard/presentation/views/create_exams_screen.dart';
+import 'package:teachers_dashboard/features/exam/presentation/views/create_exams_screen.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/quick_access_card.dart';
 
 class QuickAccessGrid extends StatelessWidget {
@@ -28,12 +28,7 @@ class QuickAccessGrid extends StatelessWidget {
             icon: Icons.assignment_outlined,
             label: 'Create Exam',
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const CreateExamContent(),
-                ),
-              );
+              Navigator.pushNamed(context, CreateExamsScreen.routeName);
             },
           ),
           const QuickAccessCard(
