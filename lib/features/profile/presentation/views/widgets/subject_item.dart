@@ -6,13 +6,19 @@ import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
 class SubjectItem extends StatelessWidget {
   final String name;
   final String id;
+  final String sort;
 
-  const SubjectItem({super.key, required this.name, required this.id});
+  const SubjectItem({
+    super.key,
+    required this.name,
+    required this.id,
+    this.sort = '',
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -28,10 +34,17 @@ class SubjectItem extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(
-            Icons.menu_book_outlined,
-            size: 24,
-            color: AppColors.primaryColor,
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.menu_book_outlined,
+                size: 24,
+                color: AppColors.primaryColor,
+              ),
+              const SizedBox(height: 8),
+              Text(sort, style: AppTextStyles.semiBold16),
+            ],
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -39,7 +52,7 @@ class SubjectItem extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(name, style: AppTextStyles.bold16),
-                const SizedBox(height: 4),
+                const SizedBox(height: 6),
                 Text(
                   id,
                   overflow: TextOverflow.ellipsis,
