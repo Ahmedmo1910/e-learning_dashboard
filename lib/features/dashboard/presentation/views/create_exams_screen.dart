@@ -55,7 +55,6 @@ class _CreateExamContentState extends State<CreateExamContent> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
       child: Container(
         color: Colors.grey[200],
         child: SafeArea(
