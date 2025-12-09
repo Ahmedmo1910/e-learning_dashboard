@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
 import 'custom_list_tile_widget.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
@@ -54,7 +55,9 @@ class ProfileContainerWidget extends StatelessWidget {
                 CustomListTileWidget(
                   title: "Lessons",
                   leadingIcon: Icons.note,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushNamed(context, LessonScreen.routeName);
+                  },
                 ),
                 CustomListTileWidget(
                   title: "Share App",
