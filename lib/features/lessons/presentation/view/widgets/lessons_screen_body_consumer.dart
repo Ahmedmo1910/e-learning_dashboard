@@ -16,7 +16,7 @@ class LessonsScreenBodyConsumer extends StatelessWidget {
         if (state is LessonCreated) {
           SnackBarHelper.showSnackBar(
             context,
-            'Lesson Created Suss',
+            'Lesson Created Successfully',
             Colors.green,
           );
         } else if (state is LessonsFailure) {

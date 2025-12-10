@@ -3,8 +3,8 @@ import 'package:teachers_dashboard/features/lessons/presentation/cubit/lessons_s
 import 'package:teachers_dashboard/features/lessons/presentation/data/lessons_repo.dart';
 
 class LessonsCubit extends Cubit<LessonsState> {
-  final LessonsRepo lessonsRepo;
-  LessonsCubit(this.lessonsRepo) : super(LessonsInitial());
+  final LessonsRepo lessonsRepo = LessonsRepo();
+  LessonsCubit() : super(LessonsInitial());
 
   Future<void> createLesson({
     required String lessontitle,
@@ -12,17 +12,17 @@ class LessonsCubit extends Cubit<LessonsState> {
     required int sort,
     required String teachersubjectid,
   }) async {
-    emit(LessonCreated());
-    final responce = await lessonsRepo.createLesson(
+    emit(LessonsLoading());
+    final response = await lessonsRepo.createLesson(
       lessontitle: lessontitle,
       lessondescription: lessondescription,
       sort: sort,
       teachersubjectid: teachersubjectid,
     );
-    if (responce['success'] == true) {
+    if (response['statusCode'] == 200) {
       emit(LessonCreated());
     } else {
-      emit(LessonsFailure(responce['message'] ?? "Failed to create lesson"));
+      emit(LessonsFailure(response['message'] ?? "Failed to create lesson"));
     }
   }
 
@@ -34,27 +34,27 @@ class LessonsCubit extends Cubit<LessonsState> {
     required String teacherSubjectId,
   }) async {
     emit(LessonsLoading());
-    final responce = await lessonsRepo.updateLesson(
+    final response = await lessonsRepo.updateLesson(
       id: id,
       lessonTitle: lessonTitle,
       lessonDescription: lessonDescription,
       sort: sort,
       teacherSubjectId: teacherSubjectId,
     );
-    if (responce['success'] == true) {
+    if (response['statusCode'] == 200) {
       emit(LessonUpdated());
     } else {
-      emit(LessonsFailure(responce['message'] ?? "Failed to update lesson"));
+      emit(LessonsFailure(response['message'] ?? "Failed to update lesson"));
     }
   }
 
   Future<void> deleteLesson({required String lessonId}) async {
     emit(LessonsLoading());
-    final responce = await lessonsRepo.deleteLesson(lessonId: lessonId);
-    if (responce['success'] == true) {
+    final response = await lessonsRepo.deleteLesson(lessonId: lessonId);
+    if (response['success'] == true) {
       emit(LessonDeleted());
     } else {
-      emit(LessonsFailure(responce['message'] ?? "Failed to delete lesson"));
+      emit(LessonsFailure(response['message'] ?? "Failed to delete lesson"));
     }
   }
 }
