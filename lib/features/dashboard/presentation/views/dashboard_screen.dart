@@ -25,6 +25,8 @@ class DashboardScreen extends StatelessWidget {
               ),
             ),
             QuickAccessGrid(),
+
+            SizedBox(height: 15),
           ],
         ),
       ),

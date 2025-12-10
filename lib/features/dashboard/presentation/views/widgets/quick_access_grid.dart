@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teachers_dashboard/features/exam/presentation/views/create_exams_screen.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/quick_access_card.dart';
+import 'package:teachers_dashboard/features/lessons/presentation/view/lessons_screen.dart';
 
 class QuickAccessGrid extends StatelessWidget {
   const QuickAccessGrid({super.key});
@@ -20,9 +21,15 @@ class QuickAccessGrid extends StatelessWidget {
         padding: EdgeInsets.zero,
 
         children: [
-          const QuickAccessCard(
+          QuickAccessCard(
             icon: Icons.upload_file_outlined,
             label: 'Upload Lessons',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LessonsScreen()),
+              );
+            },
           ),
           QuickAccessCard(
             icon: Icons.assignment_outlined,
