@@ -6,6 +6,7 @@ import 'package:teachers_dashboard/core/widgets/custom_button.dart';
 import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:teachers_dashboard/features/auth/forget_password/presentation/cubit/reset_password_cubit.dart';
 
+// ignore: must_be_immutable
 class ForgetPasswordScreenBody extends StatelessWidget {
   ForgetPasswordScreenBody({super.key});
 
