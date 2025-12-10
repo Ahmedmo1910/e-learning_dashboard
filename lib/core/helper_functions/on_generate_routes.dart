@@ -5,6 +5,7 @@ import 'package:teachers_dashboard/features/profile/presentation/views/lesson_sc
 import 'package:teachers_dashboard/main_screen.dart';
 import '../../features/exam/presentation/views/create_exams_screen.dart';
 import '../../features/exam/presentation/views/view_exams_screen.dart';
+import '../../features/lessons/presentation/view/view_lessons_screen.dart';
 import '../../features/on_boarding/presentation/views/on_boarding_screen.dart';
 import '../../features/profile/presentation/views/subjects_screen.dart';
 import '../../features/splash/presentation/views/splash_screen.dart';
@@ -31,6 +32,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const SubjectsScreen());
     case LessonScreen.routeName:
       return MaterialPageRoute(builder: (context) => const LessonScreen());
+    case ViewLessonsScreen.routeName:
+      return MaterialPageRoute(builder: (context) => const ViewLessonsScreen());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
+import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
 import 'package:teachers_dashboard/core/widgets/custom_button.dart';
 import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/cubit/lessons_cubit.dart';
+import 'package:teachers_dashboard/features/lessons/presentation/view/view_lessons_screen.dart';
 
 class LessonsScreenBody extends StatefulWidget {
   const LessonsScreenBody({super.key});
@@ -54,6 +56,21 @@ class _LessonsScreenBodyState extends State<LessonsScreenBody> {
                 labelText: 'Lesson Description',
                 maxLines: 4,
                 onSaved: (value) => lessonDescription = value!,
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, ViewLessonsScreen.routeName);
+                  },
+                  child: Text(
+                    "View Lessons",
+                    style: AppTextStyles.regular16.copyWith(
+                      color: AppColors.primaryColor,
+                      decoration: TextDecoration.underline,
+                    ),
+                  ),
+                ),
               ),
               Gap(50),
               MainButton(
