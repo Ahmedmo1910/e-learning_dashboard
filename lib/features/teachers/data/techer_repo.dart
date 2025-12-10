@@ -17,7 +17,7 @@ class TecherRepo {
     }
   }
 
-  Future<dynamic> getTeacherSubjectLessonsAttachmentsByCurrentTeache({
+  Future<dynamic> getTeacherSubjectLessonsAttachmentsByCurrentTeacher({
     required String teacherSubjectId,
   }) async {
     try {
@@ -32,9 +32,8 @@ class TecherRepo {
     }
   }
 
-  Future<dynamic> getTeacherSubjectsByTeacherId({
-    required String teacherId,
-  }) async {
+ 
+  Future<dynamic> getTeacherSubjects({required String teacherId}) async {
     try {
       final responce = await _dioClient.dio.get(
         '/api/Teachers/TeacherSubjectsByTeacherId',

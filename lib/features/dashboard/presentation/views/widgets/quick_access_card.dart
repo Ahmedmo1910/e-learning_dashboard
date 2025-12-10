@@ -21,8 +21,8 @@ class QuickAccessCard extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: Colors.grey,
-              blurRadius: 1,
-              offset: const Offset(0, 2),
+              blurRadius: 3,
+              offset: const Offset(1, 1),
             ),
           ],
           color: Colors.white,

@@ -10,7 +10,7 @@ class TeacherCubit extends Cubit<TeacherState> {
 
   Future<void> getTeacherSubjectsByTeacherId({required String teacherId}) async {
     emit(TeacherLoading());
-    final responce = await _techerRepo.getTeacherSubjectsByTeacherId(
+    final responce = await _techerRepo.getTeacherSubjects(
       teacherId: teacherId,
     );
     if (responce is Map && responce['statusCode'] == 200) {
@@ -35,7 +35,7 @@ class TeacherCubit extends Cubit<TeacherState> {
   }) async {
     emit(TeacherLoading());
     final responce = await _techerRepo
-        .getTeacherSubjectLessonsAttachmentsByCurrentTeache(
+        .getTeacherSubjectLessonsAttachmentsByCurrentTeacher(
           teacherSubjectId: teacherSubjectId,
         );
     if (responce is Map && responce['statusCode'] == 200) {

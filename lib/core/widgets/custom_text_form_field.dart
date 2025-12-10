@@ -31,7 +31,6 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      maxLines: maxLines,
       controller: controller,
       validator: (input) {
         if (input == null || input.isEmpty) {
@@ -53,6 +52,7 @@ class CustomTextFormField extends StatelessWidget {
       ],
       cursorColor: AppColors.primaryColor,
       obscureText: obscureText,
+      maxLines: maxLines,
       decoration: InputDecoration(
         hintText: hintText,
         labelText: labelText,

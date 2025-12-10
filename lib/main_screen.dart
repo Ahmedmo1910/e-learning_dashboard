@@ -3,6 +3,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
 import 'features/dashboard/presentation/views/dashboard_screen.dart';
+import 'features/profile/presentation/views/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -46,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           PersistentTabConfig(
-            screen: Center(child: Text('Profile Screen')),
+            screen:ProfileScreen(),
             item: ItemConfig(
               icon: const Icon(Icons.person),
               title: " Profile",
