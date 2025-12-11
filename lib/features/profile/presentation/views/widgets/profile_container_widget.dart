@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
+import '../../cubits/profile_cubit/profile_cubit.dart';
 import 'custom_list_tile_widget.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
@@ -10,84 +13,111 @@ class ProfileContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.75,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 70),
-            child: Column(
+    return BlocBuilder<ProfileCubit, ProfileState>(
+      builder: (context, state) {
+        if (state is ProfileLoading) {
+          return Center(
+            child: Lottie.asset(
+              'assets/animations/loading.json',
+              width: 250,
+              height: 250,
+            ),
+          );
+        }
+
+        if (state is ProfileLoaded) {
+          final profile = state.profile;
+
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.75,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
+            ),
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
               children: [
-                Text(
-                  "Username",
-                  style: AppTextStyles.semiBold24.copyWith(
-                    color: AppColors.primaryColor,
+                Padding(
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Column(
+                    children: [
+                      Text(
+                        profile['fullname'] ?? 'Full Name',
+                        style: AppTextStyles.semiBold24.copyWith(
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        profile['email'] ?? 'Email',
+                        style: AppTextStyles.medium18.copyWith(
+                          color: AppColors.greyColor,
+                        ),
+                      ),
+
+                      const SizedBox(height: 35),
+                      CustomListTileWidget(
+                        title: "Edit Profile",
+                        leadingIcon: Icons.edit_outlined,
+                        onTap: () {},
+                      ),
+                      CustomListTileWidget(
+                        title: "Subjects",
+                        leadingIcon: Icons.menu_book_outlined,
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            SubjectsScreen.routeName,
+                          );
+                        },
+                      ),
+                      CustomListTileWidget(
+                        title: "Lessons",
+                        leadingIcon: Icons.note,
+                        onTap: () {
+                          Navigator.pushNamed(context, LessonScreen.routeName);
+                        },
+                      ),
+                      CustomListTileWidget(
+                        title: "Share App",
+                        leadingIcon: Icons.share_outlined,
+                        onTap: () {},
+                      ),
+                      CustomListTileWidget(
+                        title: "Privacy Policy",
+                        leadingIcon: Icons.lock_outline,
+                        onTap: () {},
+                      ),
+                      CustomListTileWidget(
+                        title: "Sign Out",
+                        leadingIcon: Icons.logout,
+                        isSignOut: true,
+                        onTap: () {},
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  "username@gmail.com",
-                  style: AppTextStyles.medium18.copyWith(
-                    color: AppColors.greyColor,
+                const Positioned(
+                  top: -50,
+                  child: CircleAvatar(
+                    radius: 55,
+                    backgroundImage: AssetImage(
+                      "assets/images/on_boarding1.png",
+                    ),
                   ),
-                ),
-
-                const SizedBox(height: 35),
-
-                CustomListTileWidget(
-                  title: "Edit Profile",
-                  leadingIcon: Icons.edit_outlined,
-                  onTap: () {},
-                ),
-                CustomListTileWidget(
-                  title: "Subjects",
-                  leadingIcon: Icons.menu_book_outlined,
-                  onTap: () {
-                    Navigator.pushNamed(context, SubjectsScreen.routeName);
-                  },
-                ),
-                CustomListTileWidget(
-                  title: "Lessons",
-                  leadingIcon: Icons.note,
-                  onTap: () {
-                    Navigator.pushNamed(context, LessonScreen.routeName);
-                  },
-                ),
-                CustomListTileWidget(
-                  title: "Share App",
-                  leadingIcon: Icons.share_outlined,
-                  onTap: () {},
-                ),
-                CustomListTileWidget(
-                  title: "Privacy Policy",
-                  leadingIcon: Icons.lock_outline,
-                  onTap: () {},
-                ),
-                CustomListTileWidget(
-                  title: "Sign Out",
-                  leadingIcon: Icons.logout,
-                  isSignOut: true,
-                  onTap: () {},
                 ),
               ],
             ),
-          ),
+          );
+        }
 
-          Positioned(
-            top: -50,
-            child: CircleAvatar(
-              radius: 55,
-              child: Image.asset("assets/images/on_boarding1.png"),
-            ),
-          ),
-        ],
-      ),
+        if (state is ProfileFailure) {
+          return Center(child: Text(state.errorMsg));
+        }
+
+        return const SizedBox.shrink();
+      },
     );
   }
 }
