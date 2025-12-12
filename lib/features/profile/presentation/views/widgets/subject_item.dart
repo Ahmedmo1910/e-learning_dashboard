@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class SubjectItem extends StatelessWidget {
   final String name;
@@ -68,8 +69,8 @@ class SubjectItem extends StatelessWidget {
             onPressed: () {
               Clipboard.setData(ClipboardData(text: id));
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Copied!"),
+                 SnackBar(
+                  content:  Text(S.of(context).copied),
                   duration: Duration(milliseconds: 800),
                 ),
               );

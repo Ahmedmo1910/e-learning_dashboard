@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teachers_dashboard/core/widgets/snack_bar_helper.dart';
 import 'package:teachers_dashboard/features/auth/data/auth_provider.dart';
 import 'package:teachers_dashboard/features/auth/forget_password/presentation/views/reset_password_screen.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   final String email;
@@ -23,7 +24,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     final auth = context.watch<AuthProvider>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Verify OTP")),
+      appBar: AppBar(
+        title: Text(
+          S.of(context).verifyOtpTitle,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
@@ -31,10 +36,10 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           child: Column(
             children: [
               TextFormField(
-                decoration: const InputDecoration(labelText: "OTP Code"),
+                decoration: InputDecoration(labelText: S.of(context).otpLabel),
                 validator: (val) {
                   if (val == null || val.isEmpty) {
-                    return "OTP required";
+                    return S.of(context).otpRequired;
                   } else {
                     return null;
                   }
@@ -50,33 +55,33 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     : () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          final resetToken  = await auth.verifyOtp(
+                          final resetToken = await auth.verifyOtp(
                             email: widget.email,
                             otp: otp,
                           );
                           if (!mounted) return;
-                          if(resetToken != null){
-                             SnackBarHelper.showSnackBar(
-                            context,
-                            "OTP Verified!",
-                            Colors.green,
-                          );
+                          if (resetToken != null) {
+                            SnackBarHelper.showSnackBar(
+                              context,
+                              S.of(context).otpVerified,
+                              Colors.green,
+                            );
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => ResetPasswordScreen(
-                                email: widget.email,
-                                resetToken: resetToken,
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ResetPasswordScreen(
+                                  email: widget.email,
+                                  resetToken: resetToken,
+                                ),
                               ),
-                            ),
-                          );
-                        } else {
-                          SnackBarHelper.showSnackBar(
-                            context,
-                            auth.errorMsg!,
-                            Colors.red,
-                          );
+                            );
+                          } else {
+                            SnackBarHelper.showSnackBar(
+                              context,
+                              auth.errorMsg!,
+                              Colors.red,
+                            );
                           }
                         } else {
                           return;
@@ -84,7 +89,9 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       },
                 child: auth.isLoading
                     ? CircularProgressIndicator(color: Colors.white)
-                    : const Text("Verify"),
+                    : Text(
+                        S.of(context).verifyButton,
+                      ),
               ),
             ],
           ),

@@ -5,6 +5,7 @@ import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
 import 'package:teachers_dashboard/core/widgets/custom_button.dart';
 import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/cubit/lessons_cubit.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class LessonsScreenBody extends StatefulWidget {
   const LessonsScreenBody({super.key});
@@ -30,34 +31,34 @@ class _LessonsScreenBodyState extends State<LessonsScreenBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Lessons Details", style: AppTextStyles.bold20),
+               Text(S.of(context).lessonsDetails, style: AppTextStyles.bold20),
               Gap(20),
               CustomTextFormField(
-                hintText: 'Subject Id',
-                labelText: 'Subject Id',
+                hintText: S.of(context).subjectId,
+                labelText: S.of(context).subjectId,
                 onSaved: (value) => subjectId = value!,
               ),
               Gap(16),
               CustomTextFormField(
-                hintText: 'Lesson Title',
-                labelText: 'Lesson Title',
+                hintText: S.of(context).lessonTitle,
+                labelText: S.of(context).lessonTitle,
                 onSaved: (value) => lessonTitle = value!,
               ),
               Gap(16),
               CustomTextFormField(
-                hintText: 'Sort',
+                hintText: S.of(context).sort,
                 onSaved: (value) => sort = int.parse(value!),
               ),
               Gap(16),
               CustomTextFormField(
-                hintText: 'Lesson Description',
-                labelText: 'Lesson Description',
+                hintText: S.of(context).lessonDescription,
+                labelText: S.of(context).lessonDescription,
                 maxLines: 4,
                 onSaved: (value) => lessonDescription = value!,
               ),
               Gap(50),
               MainButton(
-                text: 'Create Lesson',
+                text: S.of(context).createLesson,
                 hasCircularBorder: true,
                 onTap: () {
                   if (formKey.currentState!.validate()) {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:teachers_dashboard/core/widgets/language_selector.dart';
 import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 import 'custom_list_tile_widget.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
@@ -25,14 +27,16 @@ class ProfileContainerWidget extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "Username",
+                  S.of(context).username,
+
                   style: AppTextStyles.semiBold24.copyWith(
                     color: AppColors.primaryColor,
                   ),
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  "username@gmail.com",
+                  S.of(context).email,
+
                   style: AppTextStyles.medium18.copyWith(
                     color: AppColors.greyColor,
                   ),
@@ -41,36 +45,37 @@ class ProfileContainerWidget extends StatelessWidget {
                 const SizedBox(height: 35),
 
                 CustomListTileWidget(
-                  title: "Edit Profile",
+                  title: S.of(context).editProfile,
                   leadingIcon: Icons.edit_outlined,
                   onTap: () {},
                 ),
                 CustomListTileWidget(
-                  title: "Subjects",
+                  title: S.of(context).subjects,
                   leadingIcon: Icons.menu_book_outlined,
                   onTap: () {
                     Navigator.pushNamed(context, SubjectsScreen.routeName);
                   },
                 ),
                 CustomListTileWidget(
-                  title: "Lessons",
+                  title: S.of(context).lessons,
                   leadingIcon: Icons.note,
                   onTap: () {
                     Navigator.pushNamed(context, LessonScreen.routeName);
                   },
                 ),
                 CustomListTileWidget(
-                  title: "Share App",
+                  title: S.of(context).shareApp,
                   leadingIcon: Icons.share_outlined,
                   onTap: () {},
                 ),
                 CustomListTileWidget(
-                  title: "Privacy Policy",
+                  title: S.of(context).privacyPolicy,
                   leadingIcon: Icons.lock_outline,
                   onTap: () {},
                 ),
+                LanguageSelectorTile(),
                 CustomListTileWidget(
-                  title: "Sign Out",
+                  title: S.of(context).signOut,
                   leadingIcon: Icons.logout,
                   isSignOut: true,
                   onTap: () {},
