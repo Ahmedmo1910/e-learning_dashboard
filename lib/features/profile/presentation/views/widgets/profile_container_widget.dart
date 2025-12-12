@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:teachers_dashboard/core/widgets/language_selector.dart';
+import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
@@ -38,74 +41,59 @@ class ProfileContainerWidget extends StatelessWidget {
               clipBehavior: Clip.none,
               alignment: Alignment.topCenter,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 70),
-                  child: Column(
-                    children: [
-                      Text(
-                        profile['fullname'] ?? 'Full Name',
-                        style: AppTextStyles.semiBold24.copyWith(
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        profile['email'] ?? 'Email',
-                        style: AppTextStyles.medium18.copyWith(
-                          color: AppColors.greyColor,
-                        ),
-                      ),
+                Text(
+                  S.of(context).username,
 
-                      const SizedBox(height: 35),
-                      CustomListTileWidget(
-                        title: "Edit Profile",
-                        leadingIcon: Icons.edit_outlined,
-                        onTap: () {},
-                      ),
-                      CustomListTileWidget(
-                        title: "Subjects",
-                        leadingIcon: Icons.menu_book_outlined,
-                        onTap: () {
-                          Navigator.pushNamed(
-                            context,
-                            SubjectsScreen.routeName,
-                          );
-                        },
-                      ),
-                      CustomListTileWidget(
-                        title: "Lessons",
-                        leadingIcon: Icons.note,
-                        onTap: () {
-                          Navigator.pushNamed(context, LessonScreen.routeName);
-                        },
-                      ),
-                      CustomListTileWidget(
-                        title: "Share App",
-                        leadingIcon: Icons.share_outlined,
-                        onTap: () {},
-                      ),
-                      CustomListTileWidget(
-                        title: "Privacy Policy",
-                        leadingIcon: Icons.lock_outline,
-                        onTap: () {},
-                      ),
-                      CustomListTileWidget(
-                        title: "Sign Out",
-                        leadingIcon: Icons.logout,
-                        isSignOut: true,
-                        onTap: () {},
-                      ),
-                    ],
+                  style: AppTextStyles.semiBold24.copyWith(
+                    color: AppColors.primaryColor,
                   ),
                 ),
-                const Positioned(
-                  top: -50,
-                  child: CircleAvatar(
-                    radius: 55,
-                    backgroundImage: AssetImage(
-                      "assets/images/on_boarding1.png",
-                    ),
+                const SizedBox(height: 4),
+                Text(
+                  S.of(context).email,
+
+                  style: AppTextStyles.medium18.copyWith(
+                    color: AppColors.greyColor,
                   ),
+                ),
+
+                const SizedBox(height: 35),
+
+                CustomListTileWidget(
+                  title: S.of(context).editProfile,
+                  leadingIcon: Icons.edit_outlined,
+                  onTap: () {},
+                ),
+                CustomListTileWidget(
+                  title: S.of(context).subjects,
+                  leadingIcon: Icons.menu_book_outlined,
+                  onTap: () {
+                    Navigator.pushNamed(context, SubjectsScreen.routeName);
+                  },
+                ),
+                CustomListTileWidget(
+                  title: S.of(context).lessons,
+                  leadingIcon: Icons.note,
+                  onTap: () {
+                    Navigator.pushNamed(context, LessonScreen.routeName);
+                  },
+                ),
+                CustomListTileWidget(
+                  title: S.of(context).shareApp,
+                  leadingIcon: Icons.share_outlined,
+                  onTap: () {},
+                ),
+                CustomListTileWidget(
+                  title: S.of(context).privacyPolicy,
+                  leadingIcon: Icons.lock_outline,
+                  onTap: () {},
+                ),
+                LanguageSelectorTile(),
+                CustomListTileWidget(
+                  title: S.of(context).signOut,
+                  leadingIcon: Icons.logout,
+                  isSignOut: true,
+                  onTap: () {},
                 ),
               ],
             ),

@@ -4,6 +4,7 @@ import 'package:teachers_dashboard/features/dashboard/presentation/cubits/dashbo
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/custom_app_bar.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/quick_access_grid.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/stats_grid.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});

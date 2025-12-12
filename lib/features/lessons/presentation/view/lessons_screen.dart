@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teachers_dashboard/core/widgets/custom_app_bar.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/cubit/lessons_cubit.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 import 'widgets/lessons_screen_body_consumer.dart';
 
 class LessonsScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class LessonsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => LessonsCubit(),
       child: Scaffold(
-        appBar: customAppBar(context, title: 'Create New Lesson'),
+        appBar: customAppBar(context, title: S.of(context).createnewLesson),
         body: LessonsScreenBodyConsumer(),
       ),
     );

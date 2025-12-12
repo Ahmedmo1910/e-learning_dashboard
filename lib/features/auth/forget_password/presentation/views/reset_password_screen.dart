@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teachers_dashboard/core/widgets/snack_bar_helper.dart';
 import 'package:teachers_dashboard/features/auth/data/auth_provider.dart';
 import 'package:teachers_dashboard/features/auth/sign_in/presentation/views/signin_screen.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class ResetPasswordScreen extends StatefulWidget {
   final String email;
@@ -28,7 +29,11 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     final auth = context.watch<AuthProvider>();
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Reset Password")),
+      appBar: AppBar(
+        title: Text(
+          S.of(context).resetPasswordTitle,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Form(
@@ -37,11 +42,14 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             children: [
               TextFormField(
                 obscureText: true,
-                decoration: const InputDecoration(labelText: "New Password"),
+                decoration: InputDecoration(
+                  labelText: S.of(context).newPasswordLabel,
+                ),
                 validator: (val) {
-                  if (val == null || val.isEmpty) return "Password required";
+                  if (val == null || val.isEmpty)
+                    return S.of(context).passwordRequired;
 
-                  if (val.length < 8) return "Required 8 characters or higher";
+                  if (val.length < 8) return S.of(context).passwordLengthError;
 
                   return null;
                 },
@@ -69,7 +77,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                         if (success) {
                           SnackBarHelper.showSnackBar(
                             context,
-                            "Password Changed Successfully",
+                            S.of(context).passwordChangedSuccess,
                             Colors.green,
                           );
 
@@ -88,7 +96,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                       },
                 child: auth.isLoading
                     ? CircularProgressIndicator(color: Colors.white)
-                    : const Text("Reset Password"),
+                    : Text(S.of(context).resetPasswordButton),
               ),
             ],
           ),

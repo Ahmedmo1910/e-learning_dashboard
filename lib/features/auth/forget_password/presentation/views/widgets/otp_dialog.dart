@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import 'package:pinput/pinput.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 import '../../cubit/reset_password_cubit.dart';
 
 class OtpDialog extends StatelessWidget {
@@ -17,7 +18,7 @@ class OtpDialog extends StatelessWidget {
     final defaultPinTheme = PinTheme(
       width: 52,
       height: 52,
-      textStyle:AppTextStyles.bold20,
+      textStyle: AppTextStyles.bold20,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: AppColors.greyColor),
@@ -68,7 +69,8 @@ class OtpDialog extends StatelessWidget {
         TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text(
-            'Cancel',
+            S.of(context).cancel,
+
             style: AppTextStyles.medium16.copyWith(
               color: AppColors.primaryColor,
             ),
@@ -79,8 +81,9 @@ class OtpDialog extends StatelessWidget {
             cubit.otp = otpController.text;
             cubit.verifyOtp();
           },
-          child:  Text(
-            'Verify',
+          child: Text(
+            S.of(context).verify,
+
             style: AppTextStyles.medium16.copyWith(
               color: AppColors.primaryColor,
             ),

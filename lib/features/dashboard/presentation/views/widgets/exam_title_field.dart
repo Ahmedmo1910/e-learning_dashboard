@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class ExamTitleField extends StatelessWidget {
   const ExamTitleField({super.key});
