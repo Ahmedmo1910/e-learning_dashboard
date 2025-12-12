@@ -43,19 +43,44 @@ class LessonsCubit extends Cubit<LessonsState> {
       teacherSubjectId: teacherSubjectId,
     );
     if (response['statusCode'] == 200) {
-      emit(LessonUpdated());
+      if (teacherSubjectId.isNotEmpty) {
+        await getTeacherSubjectLessons(teacherSubjectId: teacherSubjectId);
+      } else {
+        emit(LessonUpdated());
+      }
     } else {
       emit(LessonsFailure(response['message'] ?? S.current.failedToUpdateLesson));
     }
   }
 
-  Future<void> deleteLesson({required String lessonId}) async {
+  Future<void> deleteLesson({
+    required String lessonId,
+    String? teacherSubjectId,
+  }) async {
     emit(LessonsLoading());
     final response = await lessonsRepo.deleteLesson(lessonId: lessonId);
-    if (response['success'] == true) {
-      emit(LessonDeleted());
+    if (response['statusCode'] == 200) {
+      if (teacherSubjectId != null) {
+        await getTeacherSubjectLessons(teacherSubjectId: teacherSubjectId);
+      } else {
+        emit(LessonDeleted());
+      }
     } else {
       emit(LessonsFailure(response['message'] ?? S.current.failedToDeleteLesson));
+    }
+  }
+
+  Future<void> getTeacherSubjectLessons({
+    required String teacherSubjectId,
+  }) async {
+    emit(LessonsLoading());
+    final response = await lessonsRepo.getTeacherSubjectLessons(
+      teacherSubjectId: teacherSubjectId,
+    );
+    if (response is Map && response['statusCode'] == 200) {
+      emit(LessonsLoaded(response['value']));
+    } else {
+      emit(LessonsFailure(response.toString()));
     }
   }
 }

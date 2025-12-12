@@ -8,11 +8,31 @@ class TeacherCubit extends Cubit<TeacherState> {
   final TecherRepo _techerRepo = TecherRepo();
   TeacherCubit() : super(TeacherInitial());
 
-  Future<void> getTeacherSubjectsByTeacherId({required String teacherId}) async {
+  Future<void> getClassroomsOfCurrentTeacher() async {
     emit(TeacherLoading());
-    final responce = await _techerRepo.getTeacherSubjects(
-      teacherId: teacherId,
-    );
+    final responce = await _techerRepo.getClassroomsOfCurrentTeacher();
+    if (responce is Map && responce['statusCode'] == 200) {
+      emit(GetClassroomsOfCurrentTeacher(responce['value']));
+    } else {
+      emit(TeacherFailure(responce.toString()));
+    }
+  }
+
+  Future<dynamic> getTeacherProfile() async {
+    emit(TeacherLoading());
+    final responce = await _techerRepo.getTeacherProfile();
+    if (responce is Map && responce['statusCode'] == 200) {
+      emit(GetTeacherProfile(responce));
+    } else {
+      emit(TeacherFailure(responce.toString()));
+    }
+  }
+
+  Future<void> getTeacherSubjectsByTeacherId({
+    required String teacherId,
+  }) async {
+    emit(TeacherLoading());
+    final responce = await _techerRepo.getTeacherSubjects(teacherId: teacherId);
     if (responce is Map && responce['statusCode'] == 200) {
       emit(GetTeacherSubjectsByTeacherId(responce['value'] ?? responce));
     } else {

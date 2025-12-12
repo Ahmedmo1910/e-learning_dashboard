@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:teachers_dashboard/core/widgets/language_selector.dart';
 import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
 import 'package:teachers_dashboard/generated/l10n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
+import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
+import '../../cubits/profile_cubit/profile_cubit.dart';
 import 'custom_list_tile_widget.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
@@ -12,19 +16,30 @@ class ProfileContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.75,
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.topCenter,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 70),
-            child: Column(
+    return BlocBuilder<ProfileCubit, ProfileState>(
+      builder: (context, state) {
+        if (state is ProfileLoading) {
+          return Center(
+            child: Lottie.asset(
+              'assets/animations/loading.json',
+              width: 250,
+              height: 250,
+            ),
+          );
+        }
+
+        if (state is ProfileLoaded) {
+          final profile = state.profile;
+
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.75,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
+            ),
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.topCenter,
               children: [
                 Text(
                   S.of(context).username,
@@ -82,17 +97,15 @@ class ProfileContainerWidget extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          );
+        }
 
-          Positioned(
-            top: -50,
-            child: CircleAvatar(
-              radius: 55,
-              child: Image.asset("assets/images/on_boarding1.png"),
-            ),
-          ),
-        ],
-      ),
+        if (state is ProfileFailure) {
+          return Center(child: Text(state.errorMsg));
+        }
+
+        return const SizedBox.shrink();
+      },
     );
   }
 }
