@@ -5,6 +5,7 @@ import 'package:teachers_dashboard/core/widgets/snack_bar_helper.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/cubit/lessons_cubit.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/cubit/lessons_state.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/view/widgets/lessons_screen_body.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class LessonsScreenBodyConsumer extends StatelessWidget {
   const LessonsScreenBodyConsumer({super.key});
@@ -16,13 +17,14 @@ class LessonsScreenBodyConsumer extends StatelessWidget {
         if (state is LessonCreated) {
           SnackBarHelper.showSnackBar(
             context,
-            'Lesson Created Successfully',
+            S.of(context).lessonCreatedSuccessfully,
+
             Colors.green,
           );
         } else if (state is LessonsFailure) {
           SnackBarHelper.showSnackBar(
             context,
-            'Field to create lesson',
+            S.current.failedToCreateLesson,
             Colors.red,
           );
         }

@@ -8,6 +8,7 @@ import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:teachers_dashboard/core/widgets/password_field.dart';
 import 'package:teachers_dashboard/features/auth/forget_password/presentation/views/forget_password_screen.dart';
 import 'package:teachers_dashboard/features/auth/sign_in/presentation/cubit/cubit/signin_cubit.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class SigninScreenBody extends StatefulWidget {
   const SigninScreenBody({super.key});
@@ -32,12 +33,12 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText(label: 'Welcome'),
-              const CustomText(label: 'Back!'),
+              CustomText(label: S.of(context).welcome),
+              CustomText(label: S.of(context).back),
               const SizedBox(height: 32.0),
               CustomTextFormField(
                 onSaved: (value) => email = value!,
-                hintText: 'Username or Email',
+                hintText: S.of(context).usernameOrEmail,
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: SvgPicture.asset(
                   'assets/icons/userName.svg',
@@ -59,7 +60,7 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
                     );
                   },
                   child: Text(
-                    'Forgot Password?',
+                    S.of(context).forgetPassword,
                     style: AppTextStyles.regular14.copyWith(
                       color: Color(0XFF858383),
                     ),
@@ -68,7 +69,7 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
               ),
               const SizedBox(height: 32.0),
               MainButton(
-                text: 'Sign In',
+                text: S.of(context).signIn,
                 hasCircularBorder: true,
                 onTap: () {
                   if (formKey.currentState!.validate()) {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 import 'features/dashboard/presentation/views/dashboard_screen.dart';
 import 'features/profile/presentation/views/profile_screen.dart';
 
@@ -32,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
             screen:DashboardScreen(),
             item: ItemConfig(
               icon: const Icon(Icons.dashboard),
-              title: "Dashboard",
+              title: S.of(context).dashboard,
               textStyle: AppTextStyles.medium12,
               activeForegroundColor: AppColors.primaryColor,
             ),
@@ -41,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
             screen: Center(child: Text('Schedule Screen')),
             item: ItemConfig(
               icon: const Icon(Icons.schedule),
-              title: "Schedule",
+              title: S.of(context).schedule,
               textStyle: AppTextStyles.medium12,
               activeForegroundColor: AppColors.primaryColor,
             ),
@@ -50,7 +51,7 @@ class _MainScreenState extends State<MainScreen> {
             screen:ProfileScreen(),
             item: ItemConfig(
               icon: const Icon(Icons.person),
-              title: " Profile",
+              title: S.of(context).profile,
               textStyle: AppTextStyles.medium12,
               activeForegroundColor: AppColors.primaryColor,
             ),

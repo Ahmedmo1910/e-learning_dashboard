@@ -5,6 +5,27 @@ import 'package:teachers_dashboard/features/teachers/data/grade_model.dart';
 
 class TecherRepo {
   final DioClient _dioClient = DioClient();
+
+  Future<dynamic> getClassroomsOfCurrentTeacher() async {
+    try {
+      final response = await _dioClient.dio.get(
+        '/api/Teachers/ClassroomsOfCurrentTeacher',
+      );
+      return response.data;
+    } on DioException catch (e) {
+      return e.response?.data['message'] ?? 'Failed to get ClassRooms ';
+    }
+  }
+
+  Future<dynamic> getTeacherProfile() async {
+    try {
+      final response = await _dioClient.dio.get('/api/Teachers/profile');
+      return response.data;
+    } on DioException catch (e) {
+      return e.response?.data['message'] ?? 'Failed to get Profile ';
+    }
+  }
+
   Future<dynamic> getTeacherSubjectsOfCurrentTeacher() async {
     try {
       final response = await _dioClient.dio.get(
@@ -32,7 +53,6 @@ class TecherRepo {
     }
   }
 
- 
   Future<dynamic> getTeacherSubjects({required String teacherId}) async {
     try {
       final responce = await _dioClient.dio.get(
