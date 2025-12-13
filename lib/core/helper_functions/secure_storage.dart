@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:teachers_dashboard/constants.dart';
 
@@ -29,5 +31,19 @@ class SecureStorage {
 
   static Future<void> logout() async {
     await _storage.deleteAll();
+  }
+
+  static Future<void> saveProfile(Map<String, dynamic> profile) async {
+    await _storage.write(key: kProfile, value: jsonEncode(profile));
+  }
+
+  static Future<Map<String, dynamic>?> getProfile() async {
+    final jsonString = await _storage.read(key: kProfile);
+    if (jsonString == null) return null;
+    return jsonDecode(jsonString);
+  }
+
+  static Future<void> clearProfile() async {
+    await _storage.delete(key: kProfile);
   }
 }

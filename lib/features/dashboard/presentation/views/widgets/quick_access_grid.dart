@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teachers_dashboard/features/exam/presentation/views/create_exams_screen.dart';
 import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets/quick_access_card.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/view/lessons_screen.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class QuickAccessGrid extends StatelessWidget {
   const QuickAccessGrid({super.key});
@@ -23,7 +24,7 @@ class QuickAccessGrid extends StatelessWidget {
         children: [
           QuickAccessCard(
             icon: Icons.upload_file_outlined,
-            label: 'Upload Lessons',
+            label: S.of(context).uploadLessons,
             onTap: () {
               Navigator.push(
                 context,
@@ -33,26 +34,27 @@ class QuickAccessGrid extends StatelessWidget {
           ),
           QuickAccessCard(
             icon: Icons.assignment_outlined,
-            label: 'Create Exam',
+            label: S.of(context).createExam,
             onTap: () {
               Navigator.pushNamed(context, CreateExamsScreen.routeName);
             },
           ),
-          const QuickAccessCard(
+           QuickAccessCard(
             icon: Icons.folder_outlined,
-            label: 'Manage Files',
+            label: S.of(context).manageFiles,
           ),
-          const QuickAccessCard(
+           QuickAccessCard(
             icon: Icons.people_outline,
-            label: 'Student List',
+            label: S.of(context).studentList,
           ),
-          const QuickAccessCard(
+           QuickAccessCard(
             icon: Icons.bar_chart_outlined,
-            label: 'Grades',
+              label: S.of(context).grades,
+
           ),
-          const QuickAccessCard(
+           QuickAccessCard(
             icon: Icons.campaign_outlined,
-            label: 'Announcements',
+            label: S.of(context).announcements,
           ),
         ],
       ),

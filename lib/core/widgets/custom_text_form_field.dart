@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
@@ -40,7 +41,9 @@ class CustomTextFormField extends StatelessWidget {
             title: "Error",
             description: "Please Enter your $hintText",
           );*/
-          return "Please Enter your $hintText";
+
+    return S.of(context).thisFieldIsRequired; 
+
         }
         return null;
       },

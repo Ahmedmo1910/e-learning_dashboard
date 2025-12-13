@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teachers_dashboard/core/widgets/custom_progress_hud.dart';
 import 'package:teachers_dashboard/core/widgets/snack_bar_helper.dart';
 import 'package:teachers_dashboard/features/exam/presentation/cubit/exam_cubit.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 import 'create_exams_screen_body.dart';
 
 class CreateExamBlocConsumer extends StatelessWidget {
@@ -15,13 +16,13 @@ class CreateExamBlocConsumer extends StatelessWidget {
         if (state is ExamCreated) {
           SnackBarHelper.showSnackBar(
             context,
-            'Successfully Created',
+            S.of(context).examCreatedSuccess,
             Colors.green,
           );
         } else if (state is ExamFailure) {
           SnackBarHelper.showSnackBar(
             context,
-            'Failed to Create Exam',
+            S.of(context).examCreateFailed,
             Colors.red,
           );
         }

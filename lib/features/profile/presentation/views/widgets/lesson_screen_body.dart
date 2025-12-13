@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:teachers_dashboard/features/profile/presentation/cubits/lesson_cubit/lesson_cubit.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 import 'subject_item.dart';
 
@@ -24,8 +25,8 @@ class _LessonScreenBodyState extends State<LessonScreenBody> {
         children: [
           CustomTextFormField(
             controller: _idController,
-            labelText: "Teacher Subject ID",
-            hintText: "Enter Teacher Subject ID",
+            labelText: S.of(context).teacherSubjectId,
+            hintText: S.of(context).enterTeacherSubjectId,
             suffixIcon: IconButton(
               onPressed: () {
                 final id = _idController.text.trim();
@@ -78,7 +79,7 @@ class _LessonScreenBodyState extends State<LessonScreenBody> {
                   );
                 }
 
-                return const Center(child: Text("Enter an ID to load lessons"));
+                return Center(child: Text(S.of(context).enterIdToLoadLessons));
               },
             ),
           ),

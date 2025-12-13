@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../cubits/profile_cubit/profile_cubit.dart';
 import 'widgets/profile_container_widget.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -6,11 +8,14 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color(0xffdfecf5),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [const ProfileContainerWidget()],
+    return BlocProvider(
+      create: (context) => ProfileCubit()..getProfile(),
+      child: Container(
+        color: const Color(0xffdfecf5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [const ProfileContainerWidget()],
+        ),
       ),
     );
   }
