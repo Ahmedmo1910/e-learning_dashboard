@@ -4,7 +4,6 @@ import 'package:teachers_dashboard/features/profile/presentation/views/lesson_sc
 import 'package:teachers_dashboard/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
 import '../../cubits/profile_cubit/profile_cubit.dart';
 import 'custom_list_tile_widget.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
@@ -41,59 +40,75 @@ class ProfileContainerWidget extends StatelessWidget {
               clipBehavior: Clip.none,
               alignment: Alignment.topCenter,
               children: [
-                Text(
-                  S.of(context).username,
+                Padding(
+                  padding: const EdgeInsets.only(top: 70),
+                  child: Column(
+                    children: [
+                      Text(
+                        profile['fullname'] ?? 'Full Name',
+                        style: AppTextStyles.semiBold24.copyWith(
+                          color: AppColors.primaryColor,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      Text(
+                        profile['email'] ?? 'Email',
+                        style: AppTextStyles.medium18.copyWith(
+                          color: AppColors.greyColor,
+                        ),
+                      ),
+                      const SizedBox(height: 35),
 
-                  style: AppTextStyles.semiBold24.copyWith(
-                    color: AppColors.primaryColor,
+                      CustomListTileWidget(
+                        title: S.of(context).subjects,
+                        leadingIcon: Icons.menu_book_outlined,
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            SubjectsScreen.routeName,
+                          );
+                        },
+                      ),
+                      CustomListTileWidget(
+                        title: S.of(context).lessons,
+                        leadingIcon: Icons.note,
+                        onTap: () {
+                          Navigator.pushNamed(context, LessonScreen.routeName);
+                        },
+                      ),
+                      CustomListTileWidget(
+                        title: S.of(context).editProfile,
+                        leadingIcon: Icons.edit_outlined,
+                        onTap: () {},
+                      ),
+                      CustomListTileWidget(
+                        title: S.of(context).shareApp,
+                        leadingIcon: Icons.share_outlined,
+                        onTap: () {},
+                      ),
+                      CustomListTileWidget(
+                        title: S.of(context).privacyPolicy,
+                        leadingIcon: Icons.lock_outline,
+                        onTap: () {},
+                      ),
+                      LanguageSelectorTile(),
+                      CustomListTileWidget(
+                        title: S.of(context).signOut,
+                        leadingIcon: Icons.logout,
+                        isSignOut: true,
+                        onTap: () {},
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 4),
-                Text(
-                  S.of(context).email,
-
-                  style: AppTextStyles.medium18.copyWith(
-                    color: AppColors.greyColor,
+                const Positioned(
+                  top: -50,
+                  child: CircleAvatar(
+                    radius: 55,
+                    backgroundImage: AssetImage(
+                      "assets/images/on_boarding1.png",
+                    ),
                   ),
-                ),
-
-                const SizedBox(height: 35),
-
-                CustomListTileWidget(
-                  title: S.of(context).editProfile,
-                  leadingIcon: Icons.edit_outlined,
-                  onTap: () {},
-                ),
-                CustomListTileWidget(
-                  title: S.of(context).subjects,
-                  leadingIcon: Icons.menu_book_outlined,
-                  onTap: () {
-                    Navigator.pushNamed(context, SubjectsScreen.routeName);
-                  },
-                ),
-                CustomListTileWidget(
-                  title: S.of(context).lessons,
-                  leadingIcon: Icons.note,
-                  onTap: () {
-                    Navigator.pushNamed(context, LessonScreen.routeName);
-                  },
-                ),
-                CustomListTileWidget(
-                  title: S.of(context).shareApp,
-                  leadingIcon: Icons.share_outlined,
-                  onTap: () {},
-                ),
-                CustomListTileWidget(
-                  title: S.of(context).privacyPolicy,
-                  leadingIcon: Icons.lock_outline,
-                  onTap: () {},
-                ),
-                LanguageSelectorTile(),
-                CustomListTileWidget(
-                  title: S.of(context).signOut,
-                  leadingIcon: Icons.logout,
-                  isSignOut: true,
-                  onTap: () {},
                 ),
               ],
             ),
@@ -103,7 +118,6 @@ class ProfileContainerWidget extends StatelessWidget {
         if (state is ProfileFailure) {
           return Center(child: Text(state.errorMsg));
         }
-
         return const SizedBox.shrink();
       },
     );

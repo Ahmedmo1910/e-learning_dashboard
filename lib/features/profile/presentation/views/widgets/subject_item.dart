@@ -56,20 +56,6 @@ class SubjectItem extends StatelessWidget {
                 Text(sort, style: AppTextStyles.semiBold16),
               ],
             ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.copy),
-            onPressed: () {
-              Clipboard.setData(ClipboardData(text: id));
-              ScaffoldMessenger.of(context).showSnackBar(
-                 SnackBar(
-                  content:  Text(S.of(context).copied),
-                  duration: Duration(milliseconds: 800),
-                ),
-              );
-            },
-          ),
-        ],
             const SizedBox(width: 12),
             Expanded(
               child: Column(
@@ -100,8 +86,8 @@ class SubjectItem extends StatelessWidget {
                 onPressed: () {
                   Clipboard.setData(ClipboardData(text: id ?? ''));
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Copied!"),
+                    SnackBar(
+                      content: Text(S.of(context).copied),
                       duration: Duration(milliseconds: 800),
                     ),
                   );

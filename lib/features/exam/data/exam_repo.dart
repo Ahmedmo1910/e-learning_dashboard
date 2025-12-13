@@ -22,11 +22,6 @@ class ExamRepo {
           "attachmentdescription": attachmentDescription,
         },
       );
-      print("🔍 API DEBUG:");
-      print("Raw response: $response");
-      print("Success: ${response.data['success']}");
-      print("Message: ${response.data['message']}");
-      print("Status Code: ${response.data['statusCode']}");
       return response.data;
     } on DioException catch (e) {
       return {

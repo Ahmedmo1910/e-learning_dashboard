@@ -7,7 +7,6 @@ import 'package:teachers_dashboard/core/services/custom_bloc_observer.dart';
 import 'package:teachers_dashboard/core/services/get_it_service.dart';
 import 'package:teachers_dashboard/core/services/localization_provider.dart';
 import 'package:teachers_dashboard/core/services/shared_preferences_singleton.dart';
-import 'package:teachers_dashboard/features/auth/sign_in/presentation/views/signin_screen.dart';
 import 'package:teachers_dashboard/features/splash/presentation/views/splash_screen.dart';
 import 'package:teachers_dashboard/generated/l10n.dart';
 
