@@ -5,6 +5,7 @@ import 'package:teachers_dashboard/core/widgets/auth_header_widget.dart';
 import 'package:teachers_dashboard/core/widgets/custom_button.dart';
 import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:teachers_dashboard/features/auth/forget_password/presentation/cubit/reset_password_cubit.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 // ignore: must_be_immutable
 class ForgetPasswordScreenBody extends StatelessWidget {
@@ -24,16 +25,15 @@ class ForgetPasswordScreenBody extends StatelessWidget {
           children: [
             //Header Screen .............:)
             AuthHeaderWidget(
-              headerTitle: 'Forget Password ?',
-              headerSubTitle:
-                  "Enter your email address and\nwe’ll send a confirmation code",
+              headerTitle: S.of(context).forgetPassword,
+              headerSubTitle: S.of(context).enterEmailSubtitle,
             ),
             //Form .............:)
             SizedBox(height: 30),
             Form(
               key: _formKey,
               child: CustomTextFormField(
-                hintText: "Email",
+                hintText:S.of(context).emailHint,
                 onSaved: (val) => email = val!.trim(),
                 prefixIcon: SvgPicture.asset(
                   'assets/icons/email.svg',
@@ -45,7 +45,7 @@ class ForgetPasswordScreenBody extends StatelessWidget {
 
             //Continue Bottom ..................:)
             MainButton(
-              text: 'Continue',
+              text: S.of(context).continuee,
               hasCircularBorder: true,
               onTap: () {
                 if (!_formKey.currentState!.validate()) return;

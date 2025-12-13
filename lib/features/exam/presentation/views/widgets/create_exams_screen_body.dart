@@ -8,6 +8,7 @@ import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
 import 'package:teachers_dashboard/features/exam/presentation/cubit/exam_cubit.dart';
 import 'package:teachers_dashboard/features/exam/presentation/views/view_exams_screen.dart';
 import 'package:teachers_dashboard/features/exam/presentation/views/widgets/date_picker_field.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class CreateExamsScreenBody extends StatefulWidget {
   const CreateExamsScreenBody({super.key});
@@ -32,17 +33,17 @@ class _CreateExamsScreenBodyState extends State<CreateExamsScreenBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Exam Details", style: AppTextStyles.bold20),
+              Text(S.of(context).examDetails, style: AppTextStyles.bold20),
               Gap(20),
               CustomTextFormField(
-                labelText: "Subject ID",
-                hintText: "Subject ID",
+                labelText:  S.of(context).subjectId,
+                hintText: S.of(context).subjectId,
                 onSaved: (value) => subjectId = value!,
               ),
               Gap(16),
               CustomTextFormField(
-                labelText: "Exam Title",
-                hintText: "e.g., Mid-Term Biology Exam",
+                labelText: S.of(context).examTitle,
+                hintText:  S.of(context).examTitleHint,
                 onSaved: (value) => examTitle = value!,
               ),
               Gap(16),
@@ -50,17 +51,17 @@ class _CreateExamsScreenBodyState extends State<CreateExamsScreenBody> {
                 onDateChanged: (date) {
                   this.date = date.toString();
                 },
-                labelText: 'Date',
+                labelText:  S.of(context).date,
               ),
               Gap(16),
               CustomTextFormField(
-                labelText: "Exam URL",
-                hintText: "e.g., https://examplatform.com/exam123",
+                labelText:  S.of(context).examUrl,
+                hintText:  S.of(context).examUrlHint,
                 onSaved: (value) => examUrl = value!,
               ),
               Gap(16),
               CustomTextFormField(
-                hintText: "Instructions for the exam",
+                hintText: S.of(context).examInstructionsHint,
                 onSaved: (value) => instructions = value!,
                 maxLines: 4,
               ),
@@ -71,7 +72,7 @@ class _CreateExamsScreenBodyState extends State<CreateExamsScreenBody> {
                     Navigator.pushNamed(context, ViewExamsScreen.routeName);
                   },
                   child: Text(
-                    "View Exams",
+                     S.of(context).viewExams,
                     style: AppTextStyles.regular16.copyWith(
                       color: AppColors.primaryColor,
                       decoration: TextDecoration.underline,
@@ -81,7 +82,7 @@ class _CreateExamsScreenBodyState extends State<CreateExamsScreenBody> {
               ),
               Gap(50),
               MainButton(
-                text: "Create Exam",
+                text: S.of(context).createExam,
                 hasCircularBorder: true,
                 onTap: () {
                   if (formKey.currentState!.validate()) {

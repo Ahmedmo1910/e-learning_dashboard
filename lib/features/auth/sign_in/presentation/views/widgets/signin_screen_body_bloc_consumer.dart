@@ -4,6 +4,7 @@ import 'package:teachers_dashboard/core/widgets/custom_progress_hud.dart';
 import 'package:teachers_dashboard/core/widgets/snack_bar_helper.dart';
 import 'package:teachers_dashboard/features/auth/sign_in/presentation/cubit/cubit/signin_cubit.dart';
 import 'package:teachers_dashboard/features/auth/sign_in/presentation/views/widgets/signin_screen_body.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 import 'package:teachers_dashboard/main_screen.dart';
 
 class SigninScreenBodyBlocConsumer extends StatelessWidget {
@@ -16,12 +17,16 @@ class SigninScreenBodyBlocConsumer extends StatelessWidget {
         if (state is SigninSuccess) {
           SnackBarHelper.showSnackBar(
             context,
-            'Login successful',
+            S.of(context).loginSuccess,
             Colors.green,
           );
           Navigator.pushReplacementNamed(context, MainScreen.routeName);
         } else if (state is SigninFailure) {
-          SnackBarHelper.showSnackBar(context, 'Failed to login', Colors.red);
+          SnackBarHelper.showSnackBar(
+            context,
+            S.of(context).loginFailed,
+            Colors.red,
+          );
         }
       },
       builder: (context, state) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class PasswordField extends StatefulWidget {
   const PasswordField({super.key, this.onSaved, this.hintText = 'Password'});
@@ -21,7 +22,7 @@ class _PasswordFieldState extends State<PasswordField> {
           widget.onSaved!(value);
         }
       },
-      hintText: widget.hintText,
+      hintText: S.of(context).password, 
       obscureText: obscureText,
       prefixIcon: SvgPicture.asset(
         'assets/icons/password.svg',

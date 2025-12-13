@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teachers_dashboard/core/widgets/custom_text_form_field.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class DatePickerField extends StatefulWidget {
   final ValueChanged<DateTime?> onDateChanged;
@@ -67,8 +68,8 @@ class _DatePickerFieldSimpleState extends State<DatePickerField> {
       child: AbsorbPointer(
         child: CustomTextFormField(
           controller: _controller,
-          labelText: widget.labelText,
-          hintText: 'Select a date',
+            labelText: S.of(context).date,
+  hintText: S.of(context).selectDate,
           suffixIcon: const Icon(Icons.calendar_today),
         ),
       ),

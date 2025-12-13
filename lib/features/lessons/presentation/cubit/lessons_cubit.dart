@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/cubit/lessons_state.dart';
 import 'package:teachers_dashboard/features/lessons/presentation/data/lessons_repo.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class LessonsCubit extends Cubit<LessonsState> {
   final LessonsRepo lessonsRepo = LessonsRepo();
@@ -22,7 +23,7 @@ class LessonsCubit extends Cubit<LessonsState> {
     if (response['statusCode'] == 200) {
       emit(LessonCreated());
     } else {
-      emit(LessonsFailure(response['message'] ?? "Failed to create lesson"));
+      emit(LessonsFailure(response['message'] ??  S.current.failedToCreateLesson));
     }
   }
 
@@ -48,7 +49,7 @@ class LessonsCubit extends Cubit<LessonsState> {
         emit(LessonUpdated());
       }
     } else {
-      emit(LessonsFailure(response['message'] ?? "Failed to update lesson"));
+      emit(LessonsFailure(response['message'] ?? S.current.failedToUpdateLesson));
     }
   }
 
@@ -65,7 +66,7 @@ class LessonsCubit extends Cubit<LessonsState> {
         emit(LessonDeleted());
       }
     } else {
-      emit(LessonsFailure(response['message'] ?? "Failed to delete lesson"));
+      emit(LessonsFailure(response['message'] ?? S.current.failedToDeleteLesson));
     }
   }
 

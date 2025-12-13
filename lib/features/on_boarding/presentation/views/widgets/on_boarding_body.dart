@@ -5,6 +5,7 @@ import 'package:teachers_dashboard/core/services/shared_preferences_singleton.da
 import 'package:teachers_dashboard/core/widgets/custom_text_button.dart';
 import 'package:teachers_dashboard/features/auth/sign_in/presentation/views/signin_screen.dart';
 import 'package:teachers_dashboard/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
+import 'package:teachers_dashboard/generated/l10n.dart';
 
 class OnBoardingBody extends StatefulWidget {
   const OnBoardingBody({super.key});
@@ -43,7 +44,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CustomTextButton(
-                label: 'Skip',
+                label: S.of(context).skip,
+
                 textColor: Colors.black,
                 onPressed: () {
                   prefs.setBool(kIsOnBoardingViewSeen, true);
@@ -64,7 +66,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 maintainAnimation: true,
                 maintainState: true,
                 child: CustomTextButton(
-                  label: 'prev',
+                  label: S.of(context).prev,
+
                   textColor: const Color(0xFFC4C4C4),
                   onPressed: () {
                     if (currentPage > 0) {
@@ -91,7 +94,10 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 ),
               ),
               CustomTextButton(
-                label: currentPage < 2 ? 'Next' : 'Get Started',
+                label: currentPage < 2
+                    ? S.of(context).next
+                    : S.of(context).getStarted,
+
                 onPressed: () {
                   if (currentPage < 2) {
                     pageController.nextPage(
