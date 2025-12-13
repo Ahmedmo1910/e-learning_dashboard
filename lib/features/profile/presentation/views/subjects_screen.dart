@@ -13,8 +13,7 @@ class SubjectsScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => SubjectCubit(),
       child: Scaffold(
-        appBar: customAppBar(context,   title: S.of(context).allSubjects,
-),
+        appBar: customAppBar(context, title: S.of(context).allSubjects),
         body: SubjectsScreenBody(),
       ),
     );

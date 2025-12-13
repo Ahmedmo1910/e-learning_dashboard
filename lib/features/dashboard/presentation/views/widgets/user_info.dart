@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:teachers_dashboard/core/services/localization_provider.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
-import 'package:teachers_dashboard/core/widgets/language_selector.dart';
 import 'package:teachers_dashboard/generated/l10n.dart';
 
 import '../../cubits/dashboard_cubit/dashboard_cubit.dart';
@@ -42,7 +40,7 @@ class UserInfo extends StatelessWidget {
                 ),
                 Gap(5),
                 Text(
-                  'Welcome to Your Dashboard',
+                  S.of(context).welcomeDashboard,
                   style: AppTextStyles.regular14.copyWith(
                     color: Colors.white70,
                   ),
