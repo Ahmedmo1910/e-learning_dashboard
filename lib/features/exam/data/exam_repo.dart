@@ -45,4 +45,44 @@ class ExamRepo {
       };
     }
   }
+
+  Future<dynamic> updateAttachment({
+    required String id,
+    required String attachmentUrl,
+    required String attachmentTitle,
+    required String attachmentDescription,
+  }) async {
+    try {
+      final response = await _dioClient.dio.put(
+        '/api/Teachers/UpdateAttachment',
+        data: {
+          "id": id,
+          "attachmenturl": attachmentUrl,
+          "attachmenttitle": attachmentTitle,
+          "attachmentdescription": attachmentDescription,
+        },
+      );
+      return response.data;
+    } on DioException catch (e) {
+      return {
+        'success': false,
+        'message': e.response?.data["message"] ?? "Failed to update attachment",
+      };
+    }
+  }
+
+  Future<dynamic> getAttachmentsByLessonId({required String lessonId}) async {
+    try {
+      final response = await _dioClient.dio.get(
+        '/api/Teachers/GetAttachmentsByLessonId',
+        queryParameters: {'lessonId': lessonId},
+      );
+      return response.data;
+    } on DioException catch (e) {
+      return {
+        'success': false,
+        'message': e.response?.data['message'] ?? 'Failed to load attachments',
+      };
+    }
+  }
 }

@@ -28,7 +28,7 @@ class UserInfo extends StatelessWidget {
             CircleAvatar(
               radius: 22,
               backgroundColor: AppColors.darkPrimaryColor,
-              backgroundImage: AssetImage('assets/images/MyPhoto.jpg'),
+             // backgroundImage: AssetImage('assets/images/MyPhoto.jpg'),
             ),
             Gap(15),
             Column(

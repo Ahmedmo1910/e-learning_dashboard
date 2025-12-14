@@ -18,10 +18,24 @@ class DashboardCubit extends Cubit<DashboardState> {
       }
 
       final profile = await DashboardRepo().getTeacherProfile();
+      final studentsCount =
+          await DashboardRepo().getAllStudents() as List<dynamic>;
+      final classesCount =
+          await DashboardRepo().getAllClasses() as List<dynamic>;
+      final attachmentsCount =
+          await DashboardRepo().getAllAttachments() as List<dynamic>;
 
       await SecureStorage.saveProfile(profile);
 
-      emit(state.copyWith(loading: false, profile: profile));
+      emit(
+        state.copyWith(
+          loading: false,
+          profile: profile,
+          studentsCount: studentsCount.length,
+          classesCount: classesCount.length,
+          attachmentsCount: attachmentsCount.length,
+        ),
+      );
     } catch (e) {
       emit(state.copyWith(loading: false, error: e.toString()));
     }
