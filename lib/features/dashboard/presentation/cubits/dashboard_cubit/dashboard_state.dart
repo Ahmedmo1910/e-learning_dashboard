@@ -3,6 +3,9 @@ part of 'dashboard_cubit.dart';
 class DashboardState {
   final bool loading;
   final Map<String, dynamic>? profile;
+  final int studentsCount;
+  final int classesCount;
+  final int attachmentsCount;
   final List<dynamic>? stats;
   final List<dynamic>? quickAccess;
   final String? error;
@@ -10,6 +13,9 @@ class DashboardState {
   DashboardState({
     this.loading = false,
     this.profile,
+    this.studentsCount = 0,
+    this.classesCount = 0,
+    this.attachmentsCount = 0,
     this.stats,
     this.quickAccess,
     this.error,
@@ -18,6 +24,9 @@ class DashboardState {
   DashboardState copyWith({
     bool? loading,
     Map<String, dynamic>? profile,
+    int? studentsCount,
+    int? classesCount,
+    int? attachmentsCount,
     List<dynamic>? stats,
     List<dynamic>? quickAccess,
     String? error,
@@ -25,6 +34,9 @@ class DashboardState {
     return DashboardState(
       loading: loading ?? this.loading,
       profile: profile ?? this.profile,
+      studentsCount: studentsCount ?? this.studentsCount,
+      classesCount: classesCount ?? this.classesCount,
+      attachmentsCount: attachmentsCount ?? this.attachmentsCount,
       stats: stats ?? this.stats,
       quickAccess: quickAccess ?? this.quickAccess,
       error: error ?? this.error,

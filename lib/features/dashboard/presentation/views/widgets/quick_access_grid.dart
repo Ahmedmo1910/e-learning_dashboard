@@ -4,6 +4,9 @@ import 'package:teachers_dashboard/features/dashboard/presentation/views/widgets
 import 'package:teachers_dashboard/features/lessons/presentation/view/lessons_screen.dart';
 import 'package:teachers_dashboard/generated/l10n.dart';
 
+import '../../../../attendance/presentation/views/take_attendance_screen.dart';
+import '../../../../teachers/views/grades_screen.dart';
+
 class QuickAccessGrid extends StatelessWidget {
   const QuickAccessGrid({super.key});
 
@@ -16,8 +19,8 @@ class QuickAccessGrid extends StatelessWidget {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: 2,
-        mainAxisSpacing: 16,
-        crossAxisSpacing: 16,
+        mainAxisSpacing: 12,
+        crossAxisSpacing: 12,
         childAspectRatio: 1.0,
         padding: EdgeInsets.zero,
 
@@ -39,22 +42,19 @@ class QuickAccessGrid extends StatelessWidget {
               Navigator.pushNamed(context, CreateExamsScreen.routeName);
             },
           ),
-           QuickAccessCard(
-            icon: Icons.folder_outlined,
-            label: S.of(context).manageFiles,
-          ),
-           QuickAccessCard(
+          QuickAccessCard(
             icon: Icons.people_outline,
             label: S.of(context).studentList,
+            onTap: () {
+              Navigator.pushNamed(context, TakeAttendanceScreen.routeName);
+            },
           ),
-           QuickAccessCard(
+          QuickAccessCard(
             icon: Icons.bar_chart_outlined,
-              label: S.of(context).grades,
-
-          ),
-           QuickAccessCard(
-            icon: Icons.campaign_outlined,
-            label: S.of(context).announcements,
+            label: S.of(context).grades,
+            onTap: () {
+              Navigator.pushNamed(context, AddStudentGradeScreen.routeName);
+            },
           ),
         ],
       ),
