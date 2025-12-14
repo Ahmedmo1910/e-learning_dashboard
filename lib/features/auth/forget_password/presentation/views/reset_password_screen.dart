@@ -46,8 +46,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   labelText: S.of(context).newPasswordLabel,
                 ),
                 validator: (val) {
-                  if (val == null || val.isEmpty)
+                  if (val == null || val.isEmpty) {
                     return S.of(context).passwordRequired;
+                  }
 
                   if (val.length < 8) return S.of(context).passwordLengthError;
 

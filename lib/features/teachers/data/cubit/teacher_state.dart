@@ -85,8 +85,10 @@ class SubmitAttendance extends TeacherState {
 }
 
 class SubmitGrades extends TeacherState {
+  final String message;
+  SubmitGrades(this.message);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [message];
 }
 
 // class room
