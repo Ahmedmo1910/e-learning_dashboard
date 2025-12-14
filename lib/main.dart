@@ -8,6 +8,7 @@ import 'package:teachers_dashboard/core/services/get_it_service.dart';
 import 'package:teachers_dashboard/core/services/localization_provider.dart';
 import 'package:teachers_dashboard/core/services/shared_preferences_singleton.dart';
 import 'package:teachers_dashboard/features/splash/presentation/views/splash_screen.dart';
+import 'package:teachers_dashboard/features/teachers/views/grades_screen.dart';
 import 'package:teachers_dashboard/generated/l10n.dart';
 
 void main() async {
@@ -48,7 +49,8 @@ class MyApp extends StatelessWidget {
       title: 'Teachers Dashboard',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: SplashScreen.routeName,
+      // initialRoute: SplashScreen.routeName,
+      home : AddStudentGradeScreen(),
     );
   }
 }

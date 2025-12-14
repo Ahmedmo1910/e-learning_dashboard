@@ -183,7 +183,7 @@ class TeacherCubit extends Cubit<TeacherState> {
     emit(TeacherLoading());
     final responce = await _techerRepo.submitGrades(gradesList: gradesList);
     if (responce is Map && responce['statusCode'] == 200) {
-      emit(SubmitGrades());
+      emit(SubmitGrades(responce['message'] ?? 'Success'));
     } else {
       emit(TeacherFailure(responce.toString()));
     }
