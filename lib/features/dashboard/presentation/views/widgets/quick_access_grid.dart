@@ -5,6 +5,7 @@ import 'package:teachers_dashboard/features/lessons/presentation/view/lessons_sc
 import 'package:teachers_dashboard/generated/l10n.dart';
 
 import '../../../../attendance/presentation/views/take_attendance_screen.dart';
+import '../../../../teachers/views/grades_screen.dart';
 
 class QuickAccessGrid extends StatelessWidget {
   const QuickAccessGrid({super.key});
@@ -51,6 +52,9 @@ class QuickAccessGrid extends StatelessWidget {
           QuickAccessCard(
             icon: Icons.bar_chart_outlined,
             label: S.of(context).grades,
+            onTap: () {
+              Navigator.pushNamed(context, AddStudentGradeScreen.routeName);
+            },
           ),
         ],
       ),

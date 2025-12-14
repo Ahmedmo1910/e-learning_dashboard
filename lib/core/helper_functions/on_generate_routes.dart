@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:teachers_dashboard/features/auth/forget_password/presentation/views/forget_password_screen.dart';
 import 'package:teachers_dashboard/features/auth/sign_in/presentation/views/signin_screen.dart';
 import 'package:teachers_dashboard/features/profile/presentation/views/lesson_screen.dart';
+import 'package:teachers_dashboard/features/teachers/views/grades_screen.dart';
 import 'package:teachers_dashboard/main_screen.dart';
 import '../../features/attendance/presentation/views/take_attendance_screen.dart';
 import '../../features/exam/presentation/views/create_exams_screen.dart';
@@ -41,6 +42,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case TakeAttendanceScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const TakeAttendanceScreen(),
+      );
+    case AddStudentGradeScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const AddStudentGradeScreen(),
       );
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
