@@ -49,8 +49,7 @@ class MyApp extends StatelessWidget {
       title: 'Teachers Dashboard',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      // initialRoute: SplashScreen.routeName,
-      home : AddStudentGradeScreen(),
+      initialRoute: SplashScreen.routeName,
     );
   }
 }

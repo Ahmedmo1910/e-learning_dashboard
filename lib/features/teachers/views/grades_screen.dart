@@ -9,7 +9,7 @@ import 'package:teachers_dashboard/features/teachers/data/grade_model.dart';
 
 class AddStudentGradeScreen extends StatefulWidget {
   const AddStudentGradeScreen({super.key});
-
+  static const String routeName = '/add-student-grade-screen';
   @override
   State<AddStudentGradeScreen> createState() => _AddStudentGradeScreenState();
 }

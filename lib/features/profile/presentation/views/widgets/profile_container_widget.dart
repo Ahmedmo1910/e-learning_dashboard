@@ -5,6 +5,7 @@ import 'package:teachers_dashboard/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 import '../../cubits/profile_cubit/profile_cubit.dart';
+import '../students_screen.dart';
 import 'custom_list_tile_widget.dart';
 import 'package:teachers_dashboard/core/utils/app_colors.dart';
 import 'package:teachers_dashboard/core/utils/app_text_styles.dart';
@@ -77,9 +78,14 @@ class ProfileContainerWidget extends StatelessWidget {
                         },
                       ),
                       CustomListTileWidget(
-                        title: S.of(context).editProfile,
-                        leadingIcon: Icons.edit_outlined,
-                        onTap: () {},
+                        title: S.of(context).students,
+                        leadingIcon: Icons.people_alt_outlined,
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            StudentsScreen.routeName,
+                          );
+                        },
                       ),
                       CustomListTileWidget(
                         title: S.of(context).shareApp,
