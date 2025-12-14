@@ -30,7 +30,10 @@ class StatsGrid extends StatelessWidget {
                 value: state.classesCount.toString(),
               ),
               StatCard(title: S.of(context).newSubmissions, value: '12'),
-              StatCard(title: S.of(context).upcomingExams, value: '2'),
+              StatCard(
+                title: S.of(context).upcomingExams,
+                value: state.attachmentsCount.toString(),
+              ),
             ],
           ),
         );

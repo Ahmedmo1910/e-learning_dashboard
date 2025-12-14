@@ -5,6 +5,7 @@ class DashboardState {
   final Map<String, dynamic>? profile;
   final int studentsCount;
   final int classesCount;
+  final int attachmentsCount;
   final List<dynamic>? stats;
   final List<dynamic>? quickAccess;
   final String? error;
@@ -14,6 +15,7 @@ class DashboardState {
     this.profile,
     this.studentsCount = 0,
     this.classesCount = 0,
+    this.attachmentsCount = 0,
     this.stats,
     this.quickAccess,
     this.error,
@@ -24,6 +26,7 @@ class DashboardState {
     Map<String, dynamic>? profile,
     int? studentsCount,
     int? classesCount,
+    int? attachmentsCount,
     List<dynamic>? stats,
     List<dynamic>? quickAccess,
     String? error,
@@ -33,6 +36,7 @@ class DashboardState {
       profile: profile ?? this.profile,
       studentsCount: studentsCount ?? this.studentsCount,
       classesCount: classesCount ?? this.classesCount,
+      attachmentsCount: attachmentsCount ?? this.attachmentsCount,
       stats: stats ?? this.stats,
       quickAccess: quickAccess ?? this.quickAccess,
       error: error ?? this.error,

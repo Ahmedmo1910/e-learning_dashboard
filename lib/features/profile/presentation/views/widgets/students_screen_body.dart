@@ -50,7 +50,7 @@ class _StudentsScreenBodyState extends State<StudentsScreenBody> {
                   fullName: item['fullname'] ?? 'No Name',
                   email: item['email'] ?? 'No Email',
                   phone: item['phone'] ?? 'No Phone',
-                  userId: item['userid'] ?? 'No ID',
+                  userId: item['id'] ?? 'No ID',
                 ),
               );
             },

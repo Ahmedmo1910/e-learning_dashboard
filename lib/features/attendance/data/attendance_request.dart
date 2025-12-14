@@ -1,24 +1,25 @@
-class AttendanceModel {
+class AttendanceRequest {
   final String studentId;
-   String? scheduleId;
+  final String scheduleId;
+  final DateTime date;
   final bool isPresent;
   final String notes;
-  String? date = "1986-10-06T10:17:21.222Z";
-  AttendanceModel({
+
+  AttendanceRequest({
     required this.studentId,
     required this.scheduleId,
+    required this.date,
     required this.isPresent,
     required this.notes,
-    this.date,
   });
 
   Map<String, dynamic> toJson() {
     return {
       "studentid": studentId,
       "scheduleid": scheduleId,
+      "date": date.toIso8601String(),
       "ispresent": isPresent,
       "notes": notes,
-      "date": date,
     };
   }
 }

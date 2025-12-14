@@ -29,4 +29,15 @@ class DashboardRepo {
       return e.response?.data['message'] ?? 'Failed to get Classes';
     }
   }
+
+  Future<dynamic> getAllAttachments() async {
+    try {
+      final response = await _dioClient.dio.get(
+        '/api/Teachers/GetAllAttachmentsOfCurrentTeacher',
+      );
+      return response.data['value'];
+    } on DioException catch (e) {
+      return e.response?.data['message'] ?? 'Failed to get Attachments';
+    }
+  }
 }

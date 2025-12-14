@@ -22,6 +22,8 @@ class DashboardCubit extends Cubit<DashboardState> {
           await DashboardRepo().getAllStudents() as List<dynamic>;
       final classesCount =
           await DashboardRepo().getAllClasses() as List<dynamic>;
+      final attachmentsCount =
+          await DashboardRepo().getAllAttachments() as List<dynamic>;
 
       await SecureStorage.saveProfile(profile);
 
@@ -31,6 +33,7 @@ class DashboardCubit extends Cubit<DashboardState> {
           profile: profile,
           studentsCount: studentsCount.length,
           classesCount: classesCount.length,
+          attachmentsCount: attachmentsCount.length,
         ),
       );
     } catch (e) {
