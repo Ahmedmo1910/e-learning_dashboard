@@ -38,15 +38,16 @@ class _MainScreenState extends State<MainScreen> {
               activeForegroundColor: AppColors.primaryColor,
             ),
           ),
-          PersistentTabConfig(
-            screen: Center(child: Text('Schedule Screen')),
-            item: ItemConfig(
-              icon: const Icon(Icons.schedule),
-              title: S.of(context).schedule,
-              textStyle: AppTextStyles.medium12,
-              activeForegroundColor: AppColors.primaryColor,
-            ),
-          ),
+          // PersistentTabConfig(
+          //   screen: Center(child: Text('Schedule Screen')),
+          //   item: ItemConfig(
+          //     icon: const Icon(Icons.schedule),
+          //     title: S.of(context).schedule,
+          //     textStyle: AppTextStyles.medium12,
+          //     activeForegroundColor: AppColors.primaryColor,
+          //   ),
+          // ),
+          
           PersistentTabConfig(
             screen:ProfileScreen(),
             item: ItemConfig(
@@ -57,6 +58,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
         ],
+       
         navBarBuilder: (navBarConfig) =>
             Style6BottomNavBar(navBarConfig: navBarConfig),
       ),
